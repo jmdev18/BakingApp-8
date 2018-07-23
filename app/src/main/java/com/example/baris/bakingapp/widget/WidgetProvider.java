@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Widget;
+package com.example.baris.bakingapp.widget;
 
 import android.appwidget.AppWidgetProvider;
 import android.appwidget.AppWidgetManager;
@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.example.baris.bakingapp.R;
-import com.example.baris.bakingapp.Helper.RecipeData;
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.helper.RecipeData;
+import com.example.baris.bakingapp.model.RP;
 import com.example.baris.bakingapp.MainActivity;
 
 public class WidgetProvider extends AppWidgetProvider

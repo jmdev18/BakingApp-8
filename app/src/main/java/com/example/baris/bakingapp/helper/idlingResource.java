@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Helper;
+package com.example.baris.bakingapp.helper;
 
 import android.support.annotation.Nullable;
 import android.support.test.espresso.IdlingResource;

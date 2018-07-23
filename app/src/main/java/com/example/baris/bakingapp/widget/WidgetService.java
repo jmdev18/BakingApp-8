@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Widget;
+package com.example.baris.bakingapp.widget;
 
 import android.content.Intent;
 import android.content.Context;
@@ -7,9 +7,9 @@ import android.widget.RemoteViewsService;
 import java.util.ArrayList;
 
 import com.example.baris.bakingapp.R;
-import com.example.baris.bakingapp.Helper.RecipeData;
-import com.example.baris.bakingapp.Model.Ingredient;
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.helper.RecipeData;
+import com.example.baris.bakingapp.model.Ingredient;
+import com.example.baris.bakingapp.model.RP;
 
 public class WidgetService extends RemoteViewsService
 {

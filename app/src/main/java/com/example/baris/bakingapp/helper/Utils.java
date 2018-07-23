@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Helper;
+package com.example.baris.bakingapp.helper;
 
 import android.content.Context;
 import android.app.Activity;
@@ -12,8 +12,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.example.baris.bakingapp.Model.RP;
-import com.example.baris.bakingapp.Network.API;
+import com.example.baris.bakingapp.model.RP;
+import com.example.baris.bakingapp.network.API;
 import com.example.baris.bakingapp.MainActivity;
 
 public abstract class Utils

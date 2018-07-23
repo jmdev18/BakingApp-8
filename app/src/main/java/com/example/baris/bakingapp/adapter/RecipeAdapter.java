@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Adapter;
+package com.example.baris.bakingapp.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.baris.bakingapp.R;
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.model.RP;
 
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterViewHolder> {

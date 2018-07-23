@@ -1,6 +1,6 @@
-package com.example.baris.bakingapp.Helper;
+package com.example.baris.bakingapp.helper;
 
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.model.RP;
 
 public class RecipeData {
     public static RP recipe;

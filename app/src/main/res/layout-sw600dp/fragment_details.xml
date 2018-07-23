@@ -24,17 +24,31 @@
             android:textSize="30sp"
             tools:text="@string/recipe_name"/>
 
-        <TextView
-            android:id="@+id/ingredients_tv"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            tools:text="@string/ingredient_name"/>
+            android:layout_height="200dp"
+            android:fillViewport="true">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/ingredients_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotoregular"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    tools:text="@string/ingredient_name"/>
+
+            </TableLayout>
+
+        </ScrollView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/short_descriptions_rv"

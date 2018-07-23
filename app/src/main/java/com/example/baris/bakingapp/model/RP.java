@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Model;
+package com.example.baris.bakingapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

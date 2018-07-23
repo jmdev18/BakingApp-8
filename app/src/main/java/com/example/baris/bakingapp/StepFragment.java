@@ -1,6 +1,5 @@
 package com.example.baris.bakingapp;
 
-
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
@@ -28,12 +27,13 @@ import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
-import com.example.baris.bakingapp.Helper.RecipeData;
-import com.example.baris.bakingapp.Helper.idlingResource;
-import com.example.baris.bakingapp.Model.Step;
+import com.example.baris.bakingapp.helper.RecipeData;
+import com.example.baris.bakingapp.helper.idlingResource;
+import com.example.baris.bakingapp.model.Step;
 
-public class StepFragment extends Fragment
-{
+public class StepFragment extends Fragment {
+
+    private String recipeName;
     private TextView chosen_recipeName;
     private ArrayList<Step> steps;
     private TextView stepDescription;
@@ -58,6 +58,7 @@ public class StepFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         rootView = inflater.inflate(R.layout.fragment_step, container, false);
         secondView = inflater.inflate(R.layout.activity_details, container,false);
         stepDescription = rootView.findViewById(R.id.step_description_tv);
@@ -65,35 +66,32 @@ public class StepFragment extends Fragment
         thumbnailView = rootView.findViewById(R.id.video_iv);
         chosen_recipeName = rootView.findViewById(R.id.chosen_recipe_name_step_tv);
 
-
         idlingResource = getIdlingResource();
         idlingResource.setIdleState(false);
 
         if (savedInstanceState == null) {
-            Bundle bundle = getArguments();
+            Bundle args = getArguments();
             if (getArguments() != null) {
-                steps = bundle.getParcelableArrayList("STEPS");
+                steps = args.getParcelableArrayList("STEPS");
+                recipeName = getArguments().getString("RECIPE_NAME");
                 updateStepView(RecipeData.index);
             }
-
         } else {
-
             steps = savedInstanceState.getParcelableArrayList("STEPS");
             videoPos = savedInstanceState.getLong("VIDEO_POSITION");
             playWhenReady = savedInstanceState.getBoolean("PLAY_WHEN_READY");
+            recipeName = savedInstanceState.getString("RECIPE_NAME_SAVED");
             updateStepView(RecipeData.index);
         }
         return rootView;
     }
 
     public void updateStepView(int position) {
-
         Step step = steps.get(position);
         stepDescription.setText(step.getDescription());
 
         if(secondView.findViewById((R.id.twoPane)) == null) {
-            assert getArguments() != null;
-            chosen_recipeName.setText(getArguments().getString("RECIPE_NAME"));
+            chosen_recipeName.setText(recipeName);
         }
 
         if (step.getVideoURL().equals("")) {
@@ -103,32 +101,31 @@ public class StepFragment extends Fragment
 
             String recipe_img_name = "empty";
             int resID = -1;
-            String recipeName = getArguments().getString("RECIPE_NAME");
-            assert recipeName != null;
-            switch (recipeName) {
-                case "Brownies":
-                    recipe_img_name = "brownies";
-                    resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
-                    Picasso.with(context)
-                            .load(resID)
-                            .into(thumbnailView);
-                    break;
-                case "Cheesecake":
-                    recipe_img_name = "cheesecake";
-                    resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
-                    Picasso.with(context)
-                            .load(resID)
-                            .into(thumbnailView);
-                    break;
-                case "Nutella Pie":
+            int id = step.getID();
+            switch (id) {
+                case 1:
                     recipe_img_name = "nutella_pie";
                     resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
                     Picasso.with(context)
                             .load(resID)
                             .into(thumbnailView);
                     break;
-                case "Yellow Cake":
+                case 2:
+                    recipe_img_name = "brownies";
+                    resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
+                    Picasso.with(context)
+                            .load(resID)
+                            .into(thumbnailView);
+                    break;
+                case 3:
                     recipe_img_name = "yellow_cake";
+                    resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
+                    Picasso.with(context)
+                            .load(resID)
+                            .into(thumbnailView);
+                    break;
+                case 4:
+                    recipe_img_name = "cheesecake";
                     resID = context.getResources().getIdentifier(recipe_img_name, "drawable", context.getPackageName());
                     Picasso.with(context)
                             .load(resID)
@@ -157,9 +154,9 @@ public class StepFragment extends Fragment
             TrackSelector trackSelector = new DefaultTrackSelector();
             simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(rootView.getContext(), trackSelector, loadControl);
             simpleExoPlayerView.setPlayer(simpleExoPlayer);
-            String useragent = Util.getUserAgent(rootView.getContext(), "BakingApp");
+            String userAgent = Util.getUserAgent(rootView.getContext(), "BakingApp");
             MediaSource mediasource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
-                    rootView.getContext(), useragent), new DefaultExtractorsFactory(), null, null);
+                    rootView.getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             simpleExoPlayer.prepare(mediasource);
             simpleExoPlayer.seekTo(current, videoPos);
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
@@ -167,7 +164,6 @@ public class StepFragment extends Fragment
             idlingResource.setIdleState(true);
         }
     }
-
     private void releasePlayer() {
         videoPos = simpleExoPlayer.getCurrentPosition();
         playWhenReady = simpleExoPlayer.getPlayWhenReady();
@@ -205,6 +201,7 @@ public class StepFragment extends Fragment
             bundle.putLong("VIDEO_POSITION", videoPos);
             bundle.putBoolean("PLAY_WHEN_READY", playWhenReady);
             bundle.putParcelableArrayList("STEPS", steps);
+            bundle.putString("RECIPE_NAME_SAVED", recipeName);
         }
     }
 

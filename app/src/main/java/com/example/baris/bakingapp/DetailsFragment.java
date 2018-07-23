@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-import com.example.baris.bakingapp.Adapter.StepAdapter;
-import com.example.baris.bakingapp.Model.Ingredient;
-import com.example.baris.bakingapp.Model.Step;
+import com.example.baris.bakingapp.adapter.StepAdapter;
+import com.example.baris.bakingapp.model.Ingredient;
+import com.example.baris.bakingapp.model.Step;
 
 public class DetailsFragment extends Fragment
 {

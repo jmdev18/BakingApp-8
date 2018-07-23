@@ -1,5 +1,6 @@
 package com.example.baris.bakingapp;
 
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.view.View;
@@ -16,17 +16,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-import com.example.baris.bakingapp.Adapter.RecipeAdapter;
-import com.example.baris.bakingapp.Helper.RecipeData;
-import com.example.baris.bakingapp.Helper.idlingResource;
-import com.example.baris.bakingapp.Helper.Utils;
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.adapter.RecipeAdapter;
+import com.example.baris.bakingapp.helper.RecipeData;
+import com.example.baris.bakingapp.helper.idlingResource;
+import com.example.baris.bakingapp.helper.Utils;
+import com.example.baris.bakingapp.model.RP;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnItemClickListener
 {
     private RecyclerView recipes_rv;
     private ProgressBar progressBar;
     private static final String TAG = "MainActivity";
+
+    @Nullable
+    private idlingResource idlingResource;
+
+    @VisibleForTesting
+    public IdlingResource getIdlingResource() {
+        if (idlingResource == null) {
+            idlingResource = new idlingResource();
+        }
+        return idlingResource;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +79,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnI
         }
 
         getIdlingResource();
-    }
-
-    @Nullable
-    private idlingResource idlingResource;
-
-    @VisibleForTesting
-    public void getIdlingResource() {
-        if (idlingResource == null) {
-            idlingResource = new idlingResource();
-        }
     }
 
     public void setRecipeList(ArrayList<RP> rps) {

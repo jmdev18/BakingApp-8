@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Network;
+package com.example.baris.bakingapp.network;
 
 import java.util.ArrayList;
 import retrofit2.Call;
@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
-import com.example.baris.bakingapp.Model.RP;
+import com.example.baris.bakingapp.model.RP;
 
 public class API {
     private static final String BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";

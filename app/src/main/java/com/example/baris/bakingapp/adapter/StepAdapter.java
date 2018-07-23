@@ -1,4 +1,4 @@
-package com.example.baris.bakingapp.Adapter;
+package com.example.baris.bakingapp.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.baris.bakingapp.R;
-import com.example.baris.bakingapp.Model.Step;
+import com.example.baris.bakingapp.model.Step;
 
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepAdapterViewHolder>
 {
